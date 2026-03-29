@@ -15,6 +15,7 @@ public class CreateStudentRequest {
     @NotBlank(message = "Ten khong duoc de trong")
     private String name;
 
+    @NotBlank(message = "Email is not Empty")
     @Email(message = "Email khong dung dinh dang")
     private String email;
 

@@ -4,6 +4,7 @@ package com.cybersoft.jbabai1.controller;
 import com.cybersoft.jbabai1.dto.request.CreateStudentRequest;
 import com.cybersoft.jbabai1.dto.request.UpdateStudentRequest;
 import com.cybersoft.jbabai1.dto.response.StudentResponse;
+import com.cybersoft.jbabai1.exception.APIResponse;
 import com.cybersoft.jbabai1.service.StudentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,11 @@ public class StudentController {
     public ResponseEntity<?> deleteStudentById(@RequestParam Long id) {
         studentService.deleteStudentById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/test-no-agrs")
+    public ResponseEntity<?> testNoAgrs(@RequestBody APIResponse<String> apiResponse) {
+        return ResponseEntity.ok("Du lieu nhan được: "+apiResponse.getMessage());
     }
 
 
