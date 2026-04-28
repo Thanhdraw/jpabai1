@@ -10,8 +10,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class APIResponse<T> {
-    private LocalDateTime timestamp;
+
+    @Builder.Default
+    private LocalDateTime timestamp =  LocalDateTime.now();
     private int status;
     private String error;
-    private T message;
+    private String message;
+    private T data;
 }

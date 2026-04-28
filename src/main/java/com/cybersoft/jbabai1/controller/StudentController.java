@@ -7,6 +7,7 @@ import com.cybersoft.jbabai1.dto.response.StudentResponse;
 import com.cybersoft.jbabai1.exception.APIResponse;
 import com.cybersoft.jbabai1.service.StudentService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/student")
 @RequiredArgsConstructor
+
 public class StudentController {
 
     private final StudentService studentService;
@@ -53,6 +55,10 @@ public class StudentController {
     @PostMapping("/test-no-agrs")
     public ResponseEntity<?> testNoAgrs(@RequestBody APIResponse<String> apiResponse) {
         return ResponseEntity.ok("Du lieu nhan được: "+apiResponse.getMessage());
+    }
+    @GetMapping("/search")
+    public ResponseEntity<?> search(@RequestParam String name) {
+        return ResponseEntity.ok(studentService.searchStudent(name));
     }
 
 

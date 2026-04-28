@@ -1,6 +1,7 @@
 package com.cybersoft.jbabai1.dto.request;
 
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,5 +21,6 @@ public class UpdateStudentRequest {
     @NotNull(message = "Age is mandatory")
     @Min(value = 18, message = "Student must be at least 18 years old")
     @Max(value = 100, message = "Age must be realistic (under 100)")
+
     private Integer age;
 }

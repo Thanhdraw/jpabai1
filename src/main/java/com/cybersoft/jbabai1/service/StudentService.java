@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -71,9 +72,24 @@ public class StudentService {
     }
 
 
+    public List<StudentResponse> searchStudent(String keyword) {
+        List<StudentEntity> students = studentRepository.searchByName(keyword);
+
+        return students.stream()
+                .map(s -> new StudentResponse(
+                        s.getId(),
+                        s.getName(),
+                        s.getEmail(),
+                        s.getAge()
+                ))
+                .collect(Collectors.toList());
+    }
+
+
     public void deleteStudentById(@RequestParam Long id) {
         StudentEntity studentEntity = studentRepository.findById(id).orElseThrow(() -> new NotFoundStudentException("Student not found"));
         studentRepository.delete(studentEntity);
     }
+
 
 }
